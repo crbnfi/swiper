@@ -51,6 +51,7 @@ $.extend(Carbon.Swiper.prototype, {
       speed:            300,
       delay:            4000,
       hideOverflow:     true,
+      bullets:          true,
       transformSupport: (typeof Modernizr != 'undefined' ? (Modernizr.csstransforms && Modernizr.csstransitions) : false)
     }, options);
 
@@ -123,6 +124,10 @@ $.extend(Carbon.Swiper.prototype, {
       });
     }
 
+    if(this.options.bullets) {
+      $('.bullet:eq(0)').addClass('on');
+    }
+
     // Automation
     if(this.options.auto) {
       this.begin();
@@ -167,7 +172,7 @@ $.extend(Carbon.Swiper.prototype, {
     }
 
     // Bullets
-    if(this.bullets) {
+    if(this.options.bullets) {
       $(this.bullets).on('click', '.bullet', function(e){
         e.preventDefault();
         self.slideTo($(this).index());
