@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>Carbon Made jQuery Swiper Plugin</title>
+  <style type="text/css">
+    .swiper {
+      width: 650px;
+      margin: 0 auto;
+      background: #f1f1f1;
+    }
+    .swiper .next { float: right; }
+    .swiper .container {
+      overflow: hidden;
+      height: 250px;
+    }
+    .swiper ul {
+      margin: 0; padding: 0;
+      list-style: none;
+    }
+    .swiper li {
+      width: 650px;
+      height: 250px;
+      float: left;
+      margin: 0; padding: 0;
+      background: #CCC;
+    }
+    .swiper .bullets {
+      text-align: center;
+    }
+    .swiper .bullet {
+      display: inline-block;
+      width: 20px;
+      background: #AAF;
+      border: 1px solid #88F;
+      margin: 0px 5px 0px 0px;
+      text-align: center;
+    }
+    .swiper .bullet:hover {
+      background: #88F;
+    }
+  </style>
+</head>
+<body>
+  <div class="swiper">
+    <div class="swiper-controls">
+      <a href="#" class="prev">Previous</a>
+      <a href="#" class="next">Next</a>
+    </div>
+    <div class="container">
+      <ul>
+        <li class="element">Slide 1</li>
+        <li class="element">Slide 2</li>
+        <li class="element">Slide 3</li>
+      </ul>
+    </div>
+    <div class="bullets">
+      <a class="bullet">1</a>
+      <a class="bullet">2</a>
+      <a class="bullet">3</a>
+    </div>
+  </div>
+
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="crbn.swiper.js"></script>
+  <script>
+    $(function(){
+      $('.swiper').swiper({ debug: true });
+    });
+  </script>
+</body>
+</html>
