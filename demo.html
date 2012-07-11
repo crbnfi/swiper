@@ -2,41 +2,23 @@
 <head>
   <title>Carbon Made jQuery Swiper Plugin</title>
   <style type="text/css">
-    .swiper {
-      width: 650px;
-      margin: 0 auto;
-      background: #f1f1f1;
-    }
-    .swiper .next { float: right; }
-    .swiper .container {
-      overflow: hidden;
-      height: 250px;
-    }
-    .swiper ul {
-      margin: 0; padding: 0;
-      list-style: none;
-    }
-    .swiper li {
-      width: 650px;
-      height: 250px;
-      float: left;
-      margin: 0; padding: 0;
-      background: #CCC;
-    }
-    .swiper .bullets {
-      text-align: center;
-    }
-    .swiper .bullet {
-      display: inline-block;
-      width: 20px;
-      background: #AAF;
-      border: 1px solid #88F;
-      margin: 0px 5px 0px 0px;
-      text-align: center;
-    }
-    .swiper .bullet:hover {
-      background: #88F;
-    }
+    /* SWIPER ELEMENT */
+    .swiper   					        { width: 100%; }
+    .swiper .container,
+    .swiper .element 				    { width: 960px; height: 580px; overflow: hidden; margin: 0 auto; } /* Define the size of the slide */
+    .swiper .container > ul			{ margin: 0; padding: 0; list-style: none; }
+    .swiper .element				    { float: left; margin: 0; padding: 0; }
+
+    /* BULLETS */
+    .swiper .bullets 				    { text-align: center; }
+    .swiper .bullet 				    { display: inline-block; width: 20px; margin: 0 5px 0 0; text-align: center; }
+    .swiper .bullet:hover 			{  }
+    .swiper .bullet.on			  	{  } /* Active bullet styles */
+
+    /* CONTROLLERS */
+    .swiper-controls a	 		  	{  }
+    .swiper-controls .prev			{  }
+    .swiper-controls .next			{  }
   </style>
 </head>
 <body>
