@@ -187,7 +187,7 @@ $.extend(Carbon.Swiper.prototype, {
 
   slideTo: function(i, speed)
   {
-    speed = typeof speed != 'undefined' ? speen : this.options.speed;
+    speed = typeof speed != 'undefined' ? speed : this.options.speed;
     //i = (i % this.elements.length) * this.perPage
     i = (i % this.elements.length)
 
