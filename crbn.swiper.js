@@ -105,7 +105,7 @@ $.extend(Carbon.Swiper.prototype, {
     this.elWidth   = this.elements.width();
     this.bullets   = $('.bullets', this.element);
 
-    this.log('setup');
+    this.log('setup', this.width, this.perPage, this.elWidth);
 
     $('.element', this.container).width( this.elWidth ).css('-webkit-backface-visibility', 'hidden');
 
@@ -133,7 +133,7 @@ $.extend(Carbon.Swiper.prototype, {
       this.begin();
     }
     if(this.options.resize) {
-      this.slideTo(this.current);
+      this.slideTo(this.current, 0);
     }
   },
 
