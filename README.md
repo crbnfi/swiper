@@ -34,20 +34,20 @@ HTML:
 CSS:
 ```css
 /* SWIPER ELEMENT */
-.swiper   					        { width: 100%; }
+.swiper   				{ width: 100%; }
 .swiper .container,
-.swiper .element 				    { width: 960px; height: 580px; overflow: hidden; margin: 0 auto; } /* Define the size of the slide */
-.swiper .container > ul			{ margin: 0; padding: 0; list-style: none; }
-.swiper .element				    { float: left; margin: 0; padding: 0; }
+.swiper .element 		{ width: 960px; height: 580px; overflow: hidden; margin: 0 auto; } /* Define the size of the slide */
+.swiper .container > ul	{ margin: 0; padding: 0; list-style: none; }
+.swiper .element		{ float: left; margin: 0; padding: 0; }
 
 /* BULLETS */
-.swiper .bullets 				    { text-align: center; }
-.swiper .bullet 				    { display: inline-block; width: 20px; margin: 0 5px 0 0; text-align: center; }
-.swiper .bullet:hover 			{ cursor: pointer; }
-.swiper .bullet.on			  	{ cursor: default; } /* Active bullet styles */
+.swiper .bullets 		{ text-align: center; }
+.swiper .bullet 		{ display: inline-block; width: 20px; margin: 0 5px 0 0; text-align: center; }
+.swiper .bullet:hover 	{ cursor: pointer; }
+.swiper .bullet.on		{ cursor: default; } /* Active bullet styles */
 
 /* CONTROLLERS */
-.swiper-controls a	 		  	{  }
-.swiper-controls .prev			{  }
-.swiper-controls .next			{  }
+.swiper-controls a	 	{  }
+.swiper-controls .prev	{  }
+.swiper-controls .next	{  }
 ```
