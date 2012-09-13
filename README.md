@@ -36,9 +36,10 @@ CSS:
 /* SWIPER ELEMENT */
 .swiper   				{ width: 100%; }
 .swiper .container,
-.swiper .element 		{ width: 960px; height: 580px; overflow: hidden; margin: 0 auto; } /* Define the size of the slide */
+.swiper .element 		{ width: 100%; max-width: 1440px; height: 580px; overflow: hidden; margin: 0 auto; } /* Define the size of the slide in the max-width */
+.swiper .element img	{ max-width: 100%; height: auto; display: block; }
 .swiper .container > ul	{ margin: 0; padding: 0; list-style: none; }
-.swiper .element		{ float: left; margin: 0; padding: 0; }
+.swiper .element		{ float: left; margin: 0; padding: 0; position: relative; width: 100%; height: auto; }
 
 /* BULLETS */
 .swiper .bullets 		{ text-align: center; }
