@@ -6,7 +6,7 @@ Usage
 
 JavaScript:
 ```js
-$('.swiper').swiper();
+$('.swiper').swiper({ debug: false, resize: true, infinite: true });
 ```
 
 HTML:
