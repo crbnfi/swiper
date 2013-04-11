@@ -11,17 +11,17 @@ $('.swiper').swiper({ debug: false, resize: true, infinite: true });
 
 Options:
 
-debug: Boolean
-auto: Boolean
-resize: Boolean
-touch: Boolean
-touchSim: Boolean
-infinite: Boolean
-speed: Integer
-delay: Integer
-hideOverflow: Boolean
-bullets: Boolean
-transformSupport: Boolean
+* debug: Boolean
+* auto: Boolean
+* resize: Boolean
+* touch: Boolean
+* touchSim: Boolean
+* infinite: Boolean
+* speed: Integer
+* delay: Integer
+* hideOverflow: Boolean
+* bullets: Boolean
+* transformSupport: Boolean
 
 HTML:
 ```html
