@@ -38,7 +38,7 @@ $.extend(Carbon.Swiper.prototype, {
 
   log: function() { if(!!this.options.debug && typeof console != 'undefined') console.log( Array.prototype.slice.call(arguments) ); },
 
-  init: function(el, options, events)
+  init: function(el, options)
   {
     this.element = $(el);
     this.options = $.extend({
@@ -52,6 +52,8 @@ $.extend(Carbon.Swiper.prototype, {
       delay:            4000,
       hideOverflow:     true,
       bullets:          true,
+      manualWidth:      false,
+      startSlide:       0,
       transformSupport: (typeof Modernizr != 'undefined' ? (Modernizr.csstransforms && Modernizr.csstransitions) : false)
     }, options);
 
@@ -69,7 +71,7 @@ $.extend(Carbon.Swiper.prototype, {
 
     $.data(el, this.name, this); // Store instance to element data for great justice
 
-    this.log('init', options, events, (this.options.transformSupport ? 'using transform' : 'using margin-left'));
+    this.log('init', options, (this.options.transformSupport ? 'using transform' : 'using margin-left'));
 
     this.setup();
 
@@ -90,17 +92,33 @@ $.extend(Carbon.Swiper.prototype, {
 
   reset: function()
   {
+    this.log('reset')
+    $('.container', this.element).attr('style', '');
     this.container.attr('style', '');
     this.elements.attr('style', '');
   },
 
   setup: function()
   {
+    this.log('setting up', this.element.is(':hidden'), this.element.parent().width(), this.options.manualWidth)
+
+    if(this.element.is(':hidden') && !this.options.manualWidth) {
+      //this.element.width(this.element.parent().width());
+      $('.container', this.element).width(this.element.parent().width());
+      $('.element', this.element).width(this.element.parent().width());
+    }
+    else if (this.options.manualWidth != false) {
+      //this.element.width(this.options.manualWidth);
+      $('.container', this.element).width(this.options.manualWidth);
+      $('.element', this.element).width(this.options.manualWidth);
+      this.options.manualWidth = false;
+    }
+
     this.container = $('.container ul', this.element);
     this.width     = $('.container', this.element).width();
     this.elements  = $('.element',   this.element);
     this.perPage   = Math.ceil(this.width / this.elements.width());
-    this.current   = this.current || 0;
+    this.current   = this.current || this.options.startSlide;
     this.currentEl = $('.element').eq(this.current);
     this.elWidth   = this.elements.width();
     this.bullets   = $('.bullets', this.element);
@@ -192,7 +210,7 @@ $.extend(Carbon.Swiper.prototype, {
     i = (i % this.elements.length)
 
     this.log('slideTo', i, speed);
-    this.events.change(this.element);
+    this.events.change(this.currentEl);
 
     //if(i >= this.elements.length || i < 0) return;
 
@@ -283,7 +301,8 @@ $.extend(Carbon.Swiper.prototype, {
     this.touch.deltaX = e.touches[0].pageX - this.touch.startX;
 
     if(this.touch.isScrolling == null) {
-      this.touch.isScrolling = !!(this.touch.isScrolling || Math.abs(this.touch.deltaX) < Math.abs(e.touches[0].pageY - this.touch.startY));
+      var scrollDelta = e.touches[0].pageY - this.touch.startY;
+      this.touch.isScrolling = !!(this.touch.isScrolling || Math.abs(this.touch.deltaX) <= Math.abs(scrollDelta));
     }
 
     if(!this.touch.isScrolling) {
@@ -304,14 +323,14 @@ $.extend(Carbon.Swiper.prototype, {
   {
     // determine if slide attempt triggers next/prev slide
     var isValidSlide =
-    (Number(new Date()) - this.touch.time < 400      // if slide duration is less than 250ms
-    && Math.abs(this.touch.deltaX) > 20)                   // and if slide amt is greater than 20px
-    || Math.abs(this.touch.deltaX) > this.width/2,        // or if slide amt is greater than half the width
+      (Number(new Date()) - this.touch.time < 400      // if slide duration is less than 250ms
+      && Math.abs(this.touch.deltaX) > 120)             // and if slide amt is greater than 40px
+      || Math.abs(this.touch.deltaX) > this.width/2,   // or if slide amt is greater than half the width
 
     // determine if slide attempt is past start and end
     isPastBounds =
-    (!this.current && this.touch.deltaX > 0)                          // if first slide and slide amt is greater than 0
-    || (this.current === this.elements.length - 1 && this.touch.deltaX < 0);    // or if last slide and slide amt is less than 0
+      (!this.current && this.touch.deltaX > 0)                                  // if first slide and slide amt is greater than 0
+      || (this.current === this.elements.length - 1 && this.touch.deltaX < 0);  // or if last slide and slide amt is less than 0
 
     // if not scrolling vertically
     if (!this.isScrolling) {
@@ -391,7 +410,7 @@ $.extend(Carbon.Swiper.prototype, {
     // determine if slide attempt triggers next/prev slide
     var isValidSlide =
     (Number(new Date()) - this.mouse.time < 400      // if slide duration is less than 250ms
-    && Math.abs(this.mouse.deltaX) > 20)                   // and if slide amt is greater than 20px
+    && Math.abs(this.mouse.deltaX) > 120)                   // and if slide amt is greater than 20px
     || Math.abs(this.mouse.deltaX) > this.width/2,        // or if slide amt is greater than half the width
 
     // determine if slide attempt is past start and end
@@ -417,7 +436,7 @@ $.extend(Carbon.Swiper.prototype, {
 
   transitionEnd: function()
   {
-    this.events.changed(this.element);
+    this.events.changed(this.currentEl);
     $(this.element).removeClass('noclick');
   }
 
