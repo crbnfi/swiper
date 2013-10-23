@@ -236,7 +236,7 @@ $.extend(Carbon.Swiper.prototype, {
     }
 
     // Controls
-    $('.next .prev', this.element).removeClass('off');
+    $('.next, .prev', this.element).removeClass('off');
 
     if(this.current == 0) {
       $('.prev', this.element).addClass('off');
